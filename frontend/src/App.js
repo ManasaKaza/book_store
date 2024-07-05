@@ -3,6 +3,7 @@ import Home from "./Components/Home";
 import { Navbar } from "./Components/Navbar";
 import {Routes,Route} from 'react-router-dom';
 import Register from "./Components/Register";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
     <Route path='contactus' element={<Home/>}></Route> 
     <Route path='register' element={<Register/>}></Route>    
     </Routes>
+    <Footer />
     </>
   );
 }
