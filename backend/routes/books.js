@@ -46,9 +46,9 @@ router.post('/', async (req, res) => {
         // If no duplicate found, create a new book
         const newBook = await Books.create({
             title: req.body.title,
-            subtitle: req.body.subtitle,
             authors: req.body.authors,
-            image: req.body.image
+            image: req.body.image,
+            price: req.body.price
         });
 
         res.status(201).send({ newBook });
