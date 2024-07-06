@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import Card from './Card.js';
-
+import Card from './Card.js'
 const Home = ({ handleClick }) => {
   const [books, setBooks] = useState([]);
 
@@ -24,6 +23,7 @@ const Home = ({ handleClick }) => {
         ))
       }
     </section>
+
   );
 };
 

@@ -12,25 +12,27 @@ const Cart = ({ cart, setCart, handleChange }) => {
 
   return (
     <div>
-      {
-        cart?.map((item) => (
-          <div key={item._id}>
-            <div>
-              <img src={item.image} alt={item.title} />
-              <p>{item.title}</p>
+      <div style={{ display: 'flex' }}>
+        {
+          cart?.map((item) => (
+            <div key={item._id} className="ui card" style={{ margin: '20px' }}  >
+              <div className="image">
+                <img src={item.image} alt={item.title} />
+                <p>{item.title}</p>
+              </div>
+              <div>
+                <button onClick={() => handleChange(item, +1)}> + </button>
+                <span>{item.quantity}</span>
+                <button onClick={() => handleChange(item, -1)}> - </button>
+              </div>
+              <div>
+                <span>{item.price * item.quantity}</span>
+                <button onClick={() => handleRemove(item._id)}>Remove</button>
+              </div>
             </div>
-            <div>
-              <button onClick={() => handleChange(item, +1)}> + </button>
-              <span>{item.quantity}</span>
-              <button onClick={() => handleChange(item, -1)}> - </button>
-            </div>
-            <div>
-              <span>{item.price * item.quantity}</span>
-              <button onClick={() => handleRemove(item._id)}>Remove</button>
-            </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
       <div>
         <h2>Total Price: {getTotalPrice().toFixed(2)}</h2>
       </div>
@@ -39,3 +41,4 @@ const Cart = ({ cart, setCart, handleChange }) => {
 };
 
 export default Cart;
+

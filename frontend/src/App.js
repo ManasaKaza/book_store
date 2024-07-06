@@ -5,7 +5,9 @@ import { Routes, Route } from 'react-router-dom';
 import Register from "./Components/Register";
 import Cart from "./Components/Cart";
 import { useState } from 'react';
+import Footer from "./Components/Footer";
 import "./App.css";
+import Contact from "./Components/Contact"
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -41,12 +43,13 @@ function App() {
     <>
       <Navbar size={cart.length} />
       <Routes>
-        <Route path='/' element={<Home handleClick={handleClick} />}></Route>
+        <Route path='home' element={<Home handleClick={handleClick} />}></Route>
         <Route path='about' element={<About />}></Route>
-        <Route path='contactus' element={<Home handleClick={handleClick} />}></Route>
+        <Route path='contact' element={<Contact />}></Route>
         <Route path='register' element={<Register />}></Route>
         <Route path='cart' element={<Cart cart={cart} setCart={setCart} handleChange={handleChange} />}></Route>
       </Routes>
+      <Footer />
       {
         warning && <div className='warning'>Item is already added to your cart</div>
       }
