@@ -1,0 +1,32 @@
+.promo-container {
+    position: relative;
+    width: 2340px;
+    height: 10%;
+  }
+  
+  .promo-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: rgb(224, 215, 227);
+    padding-left: 100px;
+    background-color: transparent; 
+  
+  }
+  
+ 
+   .promo-button {
+    margin-top: 10px;
+    margin-right: 600px;
+  padding: 15px 30px; /* Increase padding for larger buttons */
+  font-size: 1.25rem; 
+  }
+  
+.promo-image {
+    padding-left: 5%;
+    /* border-width: 5; */
+    /* padding-right: 10%; */
+  } 
+
