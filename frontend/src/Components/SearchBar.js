@@ -1,7 +1,8 @@
-// src/components/SearchBar.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SearchBar() {
+  const navigate = useNavigate();
   const [query, setQuery] = useState('');
 
   const handleChange = (e) => {
@@ -10,12 +11,12 @@ function SearchBar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Implement search functionality here
+    navigate(`/home?query=${encodeURIComponent(query)}`);
     console.log('Searching for:', query);
   };
 
   return (
-    <form className="search-bar">
+    <form className="search-bar" onSubmit={handleSubmit}>
       <div className="input-group">
         <input
           type="text"
@@ -30,10 +31,9 @@ function SearchBar() {
           className="btn btn-outline-secondary"
           type="submit"
           id="search-button"
-          onClick={handleSubmit}
           style={{ marginRight: "200px" }}
         >
-          <i class="search icon"></i>
+          <i className="search icon"></i>
         </button>
       </div>
     </form>

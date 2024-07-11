@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../assets/logo.jpeg";
 import SearchBar from "./SearchBar";
 import ThemeToggle from "./ThemeToggle";
 import Register from "./Register";
+import { CartContext } from "../Features/ContextProvider";
 
-export const Navbar = ({ size }) => {
+export const Navbar = () => {
+  const { cart } = useContext(CartContext)
   useEffect(() => {
     const handleHover = (e) => {
       const navbarCollapse = document.getElementById("navbarNav");
@@ -45,7 +47,7 @@ export const Navbar = ({ size }) => {
               className="d-inline-block align-top"
               alt="Logo"
             />
-            <span className="ml-2" style={{ marginRight: "250px" }}>
+            <span className="ml-2" style={{ marginRight: "100px" }}>
               BookStore
             </span>
             <button
@@ -105,14 +107,11 @@ export const Navbar = ({ size }) => {
             </ul>
             <SearchBar />
             <li className="nav-item">
-              <NavLink className="nav-link" to="/cart" style={{ position: 'relative' }}>
-                <span>
-                  <i style={{ fontSize: "20px", marginRight: "20px" }} className="shopping cart icon"></i>
-                </span>
-                <span>{size}</span>
+              <NavLink className="nav-link" to="/cart" >
+                <i style={{ fontSize: "20px"}} className="shopping cart icon"></i>
+                {cart.length}
               </NavLink>
             </li>
-
             <ThemeToggle />
             <Register />
           </div>

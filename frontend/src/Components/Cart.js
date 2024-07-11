@@ -1,44 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react'
+import { CartContext } from '../Features/ContextProvider'
+import CartProduct from './CartProduct'
+import { totalItem, totalPrice } from '../Features/CartReducer'
 
-const Cart = ({ cart, setCart, handleChange }) => {
-  const handleRemove = (_id) => {
-    const arr = cart.filter((item) => item._id !== _id);
-    setCart(arr);
-  };
-
-  const getTotalPrice = () => {
-    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
-  };
-
+const Cart = () => {
+    const {cart} = useContext(CartContext)
   return (
-    <div>
-      <div style={{ display: 'flex' }}>
-        {
-          cart?.map((item) => (
-            <div key={item._id} className="ui card" style={{ margin: '20px' }}  >
-              <div className="image">
-                <img src={item.image} alt={item.title} />
-                <p>{item.title}</p>
-              </div>
-              <div>
-                <button onClick={() => handleChange(item, +1)}> + </button>
-                <span>{item.quantity}</span>
-                <button onClick={() => handleChange(item, -1)}> - </button>
-              </div>
-              <div>
-                <span>{item.price * item.quantity}</span>
-                <button onClick={() => handleRemove(item._id)}>Remove</button>
-              </div>
+    <div className='container mt-3'>
+        <div className="row">
+            <div className="col-8">
+                {cart.map(p => (
+                    <CartProduct product={p}></CartProduct>
+                ))}
             </div>
-          ))
-        }
-      </div>
-      <div>
-        <h2>Total Price: {getTotalPrice().toFixed(2)}</h2>
-      </div>
+            <div className="col-4 ">
+                <div className="bg-secondary p-3 text-white">
+                    <h5>Total Items: {totalItem(cart)}</h5>
+                    <h5>Total Price: ${totalPrice(cart)} </h5>
+                    <button className='btn btn-warning'>Checkout</button>
+                </div>
+            </div>
+        </div>
     </div>
-  );
-};
+  )
+}
 
-export default Cart;
-
+export default Cart
