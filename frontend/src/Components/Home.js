@@ -1,9 +1,12 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Card from './Card.js';
 import { useLocation } from 'react-router-dom';
+import { Carousel, Button } from 'react-bootstrap';
+import axios from 'axios';
+import './Home.css';
+import homeImage from '../assets/home_img.png';
 
-const Home = () => {
+const Home = ({ handleClick }) => {
   const [books, setBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
   const location = useLocation();
@@ -13,11 +16,11 @@ const Home = () => {
   useEffect(() => {
     axios.get('http://localhost:5000/api/books')
       .then(response => {
-        console.log(response.data.books);
         setBooks(response.data.books);
+        setFilteredBooks(response.data.books);
       })
       .catch(error => {
-        console.error('There was an error fetching the data!', error);
+        console.error('Error fetching books:', error);
       });
   }, []);
 
@@ -30,17 +33,41 @@ const Home = () => {
     setFilteredBooks(filtered);
   }, [books, query]);
 
+  const renderSlides = () => {
+    const itemsPerSlide = 4; // Adjust this number based on your design needs
+    const slides = [];
+    for (let i = 0; i < filteredBooks.length; i += itemsPerSlide) {
+      slides.push(
+        <Carousel.Item key={i}>
+          <div className="container mt-5">
+            <div className="row row-cols-1 row-cols-md-5 g-4">
+              {filteredBooks.slice(i, i + itemsPerSlide).map(item => (
+                <div className="col" key={item._id}>
+                  <Card item={item} handleClick={handleClick} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </Carousel.Item>
+      );
+    }
+    return slides;
+  };
 
   return (
-    <div className="container mt-5">
-      <div className='row row-cols-1 row-cols-md-5 g-4'>
-        {
-          filteredBooks.map(item => (
-            <Card item={item} key={item._id} />
-          ))
-        }
+    <section>
+      <div className="promo-container">
+        <img src={homeImage} alt="Promo" className="img-fluid promo-image" />
+        <div className="promo-overlay">
+          <Button variant="primary" className="promo-button">Buy a Book</Button>
+          <Button variant="secondary" className="promo-button">Sell a Book</Button>
+        </div>
       </div>
-    </div>
+
+      <Carousel interval={null} controls={true} indicators={true}>
+        {renderSlides()}
+      </Carousel>
+    </section>
   );
 };
 

@@ -22,7 +22,7 @@ const Card = ({ item }) => {
 
   return (
     <div className="col">
-      <div className="card h-100">
+      <div className="card h-150">
         <img src={item.image} style={{ height: "220px" }} alt={item.title} />
         <div className="card-body">
           <h4 className="card-title">{item.title}</h4>
@@ -34,7 +34,7 @@ const Card = ({ item }) => {
           >
             Add To Cart
           </button>
-          {message && <p style={{color:"red"}}>{message}</p>}
+          {message && <p style={{ color: "red" }}>{message}</p>}
         </div>
       </div>
     </div>
