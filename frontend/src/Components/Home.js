@@ -34,13 +34,13 @@ const Home = ({ handleClick }) => {
   }, [books, query]);
 
   const renderSlides = () => {
-    const itemsPerSlide = 4; // Adjust this number based on your design needs
+    const itemsPerSlide = 4;
     const slides = [];
     for (let i = 0; i < filteredBooks.length; i += itemsPerSlide) {
       slides.push(
         <Carousel.Item key={i}>
           <div className="container mt-5">
-            <div className="row row-cols-1 row-cols-md-5 g-4">
+            <div className="row row-cols-1 row-cols-md-4 g-4">
               {filteredBooks.slice(i, i + itemsPerSlide).map(item => (
                 <div className="col" key={item._id}>
                   <Card item={item} handleClick={handleClick} />

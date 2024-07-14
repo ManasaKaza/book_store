@@ -1,7 +1,8 @@
 .promo-container {
     position: relative;
-    width: 2340px;
-    height: 10%;
+    width: 100%;
+    height: 80vh; /* 70% of the viewport height */
+    overflow: hidden;
 }
 
 .promo-overlay {
@@ -11,22 +12,40 @@
     transform: translate(-50%, -50%);
     text-align: center;
     color: rgb(224, 215, 227);
-    padding-left: 100px;
     background-color: transparent;
-
 }
-
 
 .promo-button {
     margin-top: 10px;
-    margin-right: 600px;
+    margin-right: 5px;
+    margin-left: 600px;
     padding: 15px 30px;
     /* Increase padding for larger buttons */
     font-size: 1.25rem;
 }
-
 .promo-image {
-    padding-left: 5%;
-    /* border-width: 5; */
-    /* padding-right: 10%; */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures the image covers the container without distortion */
 }
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 10%; /* Adjust the width as needed */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(126, 88, 56, 0.5); /* Add a background color for better visibility */
+  border-radius: 40%; /* Make the icons circular */
+  block-size: 20%;
+}
+
+.carousel-control-prev {
+  left: -3%; /* Move the control to the left */
+}
+
+.carousel-control-next {
+  right: -3%; /* Move the control to the right */
+}
+
