@@ -1,10 +1,8 @@
 import React, { useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../assets/logo.jpeg";
 import SearchBar from "./SearchBar";
 import ThemeToggle from "./ThemeToggle";
-import Register from "./Register";
 import { CartContext } from "../Features/ContextProvider";
 
 export const Navbar = () => {
@@ -108,12 +106,38 @@ export const Navbar = () => {
             <SearchBar />
             <li className="nav-item">
               <NavLink className="nav-link" to="/cart" >
-                <i style={{ fontSize: "20px"}} className="shopping cart icon"></i>
+                <i style={{ fontSize: "20px" }} className="shopping cart icon"></i>
                 {cart.length}
               </NavLink>
             </li>
             <ThemeToggle />
-            <Register />
+            <i
+              className="user icon"
+              style={{
+                fontSize: "20px",
+                marginTop: "4px",
+                marginRight: "15px",
+              }}
+            ></i>
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link"
+                  to="signup"
+                  style={{ marginRight: "35px", fontSize: "2vh" }}
+                >
+                  SignUp
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link"
+                  to="logout"
+                  style={{ marginRight: "35px", fontSize: "2vh" }}
+                >
+                  logout
+                </NavLink>
+              </li></ul>
           </div>
         </div>
       </nav>

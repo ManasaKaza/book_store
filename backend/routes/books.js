@@ -6,7 +6,7 @@ const Books = require('../models/books');
 // @desc    Get all books
 // @access  Public
 router.get('/', async (req, res) => {
-    try {   
+    try {
         const books = await Books.find({});
         res.send({ books });
     } catch (err) {
@@ -76,16 +76,15 @@ router.put('/:id', async (req, res) => {
 // @route   DELETE /api/books/:id
 // @desc    Delete a book
 // @access  Public
+
 router.delete('/:id', async (req, res) => {
     try {
-        const removedBook = await Books.findOneAndDelete(req.params.id);
-        if (!removedBook) {
-            return res.status(404).send({ message: 'Book not found!' });
-        }
-        res.send({ message: 'The book was removed' });
+      const removeStudent = await Students.findByIdAndDelete(req.params.id);
+      res.send({ message: 'The student was removed' });
     } catch (err) {
-        res.status(400).send({ error: err.message });
+      res.status(400).send({ error: err });
     }
-});
+  });
+  
 
 module.exports = router;

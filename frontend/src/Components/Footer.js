@@ -15,22 +15,22 @@ export const Footer = () => {
 
         {/* Right */}
         <div>
-          <a href="" className="me-4 text-reset">
+          <a href="https://www.facebook.com" className="me-4 text-reset">
             <i className="fab fa-facebook-f"></i>
           </a>
-          <a href="" className="me-4 text-reset">
+          <a href="https://www.twitter.com" className="me-4 text-reset">
             <i className="fab fa-twitter"></i>
           </a>
-          <a href="" className="me-4 text-reset">
+          <a href="https://www.google.com" className="me-4 text-reset">
             <i className="fab fa-google"></i>
           </a>
-          <a href="" className="me-4 text-reset">
+          <a href="https://www.instagram.com" className="me-4 text-reset">
             <i className="fab fa-instagram"></i>
           </a>
-          <a href="" className="me-4 text-reset">
+          <a href="https://www.linkedin.com" className="me-4 text-reset">
             <i className="fab fa-linkedin"></i>
           </a>
-          <a href="" className="me-4 text-reset">
+          <a href="https://www.github.com" className="me-4 text-reset">
             <i className="fab fa-github"></i>
           </a>
         </div>
@@ -62,22 +62,22 @@ export const Footer = () => {
               {/* Links */}
               <h6 className="text-uppercase fw-bold mb-4">Products</h6>
               <p>
-                <a href="#!" className="text-reset">
+                <a href="https://angular.io" className="text-reset">
                   Angular
                 </a>
               </p>
               <p>
-                <a href="#" className="text-reset">
+                <a href="https://reactjs.org" className="text-reset">
                   React
                 </a>
               </p>
               <p>
-                <a href="#" className="text-reset">
+                <a href="https://vuejs.org" className="text-reset">
                   Vue
                 </a>
               </p>
               <p>
-                <a href="#" className="text-reset">
+                <a href="https://laravel.com" className="text-reset">
                   Laravel
                 </a>
               </p>
@@ -89,22 +89,22 @@ export const Footer = () => {
               {/* Links */}
               <h6 className="text-uppercase fw-bold mb-4">Useful links</h6>
               <p>
-                <a href="#" className="text-reset">
+                <a href="https://example.com/pricing" className="text-reset">
                   Pricing
                 </a>
               </p>
               <p>
-                <a href="#" className="text-reset">
+                <a href="https://example.com/settings" className="text-reset">
                   Settings
                 </a>
               </p>
               <p>
-                <a href="#" className="text-reset">
+                <a href="https://example.com/orders" className="text-reset">
                   Orders
                 </a>
               </p>
               <p>
-                <a href="#" className="text-reset">
+                <a href="https://example.com/help" className="text-reset">
                   Help
                 </a>
               </p>

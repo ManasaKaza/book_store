@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(require('cors')());
 app.use(require('helmet')());
 app.use('/api/books', require('./routes/books'));
-// app.use('/api/user', require('./routes/user'));
+app.use('/api/user', require('./routes/user'));
 // app.use('/api/courses', require('./routes/courses'));
 
 

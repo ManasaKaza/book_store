@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from './Card.js';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Carousel, Button } from 'react-bootstrap';
 import axios from 'axios';
 import './Home.css';
@@ -59,8 +59,8 @@ const Home = ({ handleClick }) => {
       <div className="promo-container">
         <img src={homeImage} alt="Promo" className="img-fluid promo-image" />
         <div className="promo-overlay">
-          <Button variant="primary" className="promo-button">Buy a Book</Button>
-          <Button variant="secondary" className="promo-button">Sell a Book</Button>
+          <Button  variant="primary" className="promo-button">Buy a Book</Button>
+          <Link to='/sell'><Button variant="secondary" className="promo-button">Sell a Book</Button></Link>
         </div>
       </div>
 
