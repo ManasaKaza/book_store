@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const User = require('../models/user');
+
+// Load environment variables
+require('dotenv').config();
 
 // @route   POST /api/user/register
 // @desc    Create a user
@@ -14,22 +18,26 @@ router.post('/register', async (req, res) => {
     const userAvailable = await User.findOne({ email });
     if (userAvailable) {
       return res.status(400).json({ error: "User already registered!" });
-    } else {
-      // Create a new user
-      const newUser = await User.create({
-        username: fullName,
-        email,
-        password,
-        role,
-      });
-      return res.status(201).json(newUser); // Use 201 status for successful creation
     }
+
+    // Hash the password before saving it to the database
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Create a new user
+    const newUser = await User.create({
+      username: fullName,
+      email,
+      password: hashedPassword,
+      role,
+    });
+
+    return res.status(201).json(newUser); // Use 201 status for successful creation
   } catch (error) {
     console.error(error);
-    return res.status(400).json({ error: error.message });
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 
 // @desc    Login user
 // @route   POST /api/user/login
@@ -41,26 +49,32 @@ router.post('/login', async (req, res) => {
     // Find the user by email
     const foundUser = await User.findOne({ email });
 
-    if (foundUser) {
-      // Check if the provided password matches the stored password
-      if (foundUser.password === password) {
-        // Generate a JWT token with user's ID and role
-        const token = jwt.sign({ userId: foundUser._id, role: foundUser.role }, 'your-secret-key', { expiresIn: '1h' });
-        return res.json({ token, userId: foundUser._id, role: foundUser.role });
-      }
-      else {
-        return res.status(401).json({ error: "Password is incorrect" });
-      }
-    }
-    else {
+    if (!foundUser) {
       return res.status(404).json({ error: "No record found" });
     }
-  }
-  catch (error) {
+
+    // Check if the provided password matches the stored hashed password
+    const isMatch = await bcrypt.compare(password, foundUser.password);
+
+    if (!isMatch) {
+      return res.status(401).json({ error: "Password is incorrect" });
+    }
+
+    console.log('ACCESS_TOKEN_SECRET:', process.env.ACCESS_TOKEN_SECRET);
+    console.log('User ID:', foundUser._id);
+    console.log('Expires In:', '1m');
+
+    const token = jwt.sign(
+      { userId: foundUser._id, role: foundUser.role },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: '1m' } 
+    );
+
+    return res.json({ token, userId: foundUser._id, role: foundUser.role });
+  } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
-
 });
 
 module.exports = router;
