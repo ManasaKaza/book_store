@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "backend for book store",
   "main": "index.js",
-   "scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1",
-  "start": "nodemon index.js",
-  "server": "nodemon index.js",
-  "build": "cd client && npm install && npm run build"
-},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "server": "nodemon index.js"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
