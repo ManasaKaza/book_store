@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');  // Import the path module
+const path = require('path');  
 require('dotenv').config();
 require('./models/db');
 const app = express();
