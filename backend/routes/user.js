@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
+const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
@@ -21,8 +21,7 @@ router.post('/register', async (req, res) => {
     }
 
     // Hash the password before saving it to the database
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await argon2.hash(password);
 
     // Create a new user
     const newUser = await User.create({
@@ -54,7 +53,7 @@ router.post('/login', async (req, res) => {
     }
 
     // Check if the provided password matches the stored hashed password
-    const isMatch = await bcrypt.compare(password, foundUser.password);
+    const isMatch = await argon2.verify(foundUser.password, password);
 
     if (!isMatch) {
       return res.status(401).json({ error: "Password is incorrect" });
