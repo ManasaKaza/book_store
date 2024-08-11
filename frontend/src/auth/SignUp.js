@@ -14,7 +14,7 @@ const Signup = () => {
     const handleRegistration = (e) => {
         e.preventDefault();
         console.log({ fullName, email, password, role });
-        axios.post('http://localhost:5000/api/user/register', { fullName, email, password, role })
+        axios.post('https://book-store-wo7x.onrender.com/api/user/register', { fullName, email, password, role })
             .then(res => {
                 console.log(res.data);
                 navigate('/login');

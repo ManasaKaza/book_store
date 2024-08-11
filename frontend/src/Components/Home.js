@@ -14,7 +14,7 @@ const Home = ({ handleClick }) => {
   const query = queryParams.get('query') || '';
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/books')
+    axios.get('https://book-store-wo7x.onrender.com/api/books')
       .then(response => {
         setBooks(response.data.books);
         setFilteredBooks(response.data.books);

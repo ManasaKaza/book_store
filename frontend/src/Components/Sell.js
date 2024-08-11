@@ -38,7 +38,7 @@ const Sell = () => {
     const addBook = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:5000/api/books", formData, {
+            await axios.post("https://book-store-wo7x.onrender.com/api/books", formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
